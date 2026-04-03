@@ -1,0 +1,11 @@
+{
+  "name": "tg-gateway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "bottleneck": "^2.19.5",
+    "qrcode": "^1.5.3",
+    "redis": "^4.6.0",
+    "telegraf": "^4.16.0"
+  }
+}

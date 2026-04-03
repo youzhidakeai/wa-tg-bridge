@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+
+  # ── WA 节点 (无权、动态扩容) ──
+  wa-node:
+    build:
+      context: ./wa-node
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=${REDIS_URL}
+      - SESSION_ROOT=/wa_sessions
+    volumes:
+      - ./sessions:/wa_sessions
+    networks:
+      - wa_net
+
+  # ── TG 网关 (无权、仅处理业务逻辑) ──
+  tg-node:
+    build:
+      context: ./tg-node
+    container_name: tg-node
+    restart: unless-stopped
+    environment:
+      - TG_BOT_TOKEN=${TG_BOT_TOKEN}
+      - REDIS_URL=${REDIS_URL}
+    networks:
+      - wa_net
+
+  # ── Docker 管理员 (有权、内部服务、资源审计) ──
+  docker-manager:
+    build:
+      context: ./docker-manager
+    container_name: docker-manager
+    restart: always
+    environment:
+      - REDIS_URL=${REDIS_URL}
+      - MEM_FREE_THRESHOLD_MB=${MEM_FREE_THRESHOLD_MB:-500}
+      - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-tgwaforward}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/app
+    networks:
+      - wa_net
+
+networks:
+  wa_net:
+    driver: bridge

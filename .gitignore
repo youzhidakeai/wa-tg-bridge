@@ -1,0 +1,83 @@
+# ===========================
+# Node.js
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# ===========================
+# WA Session（含登录凭证，绝对不能上传）
+# ===========================
+sessions/
+.wwebjs_auth/
+.wwebjs_cache/
+wa_session/
+
+# ===========================
+# 环境变量 / 敏感配置
+# ===========================
+.env
+.env.local
+.env.*.local
+
+# ===========================
+# Redis 本地数据
+# ===========================
+dump.rdb
+
+# ===========================
+# Docker
+# ===========================
+.docker/
+
+# ===========================
+# macOS 专属
+# ===========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon?
+
+# Finder 侧边栏标签
+.localized
+
+# 缩略图缓存
+Thumbs.db
+
+# ===========================
+# IDE / 编辑器
+# ===========================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (WebStorm / IntelliJ)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ===========================
+# 系统日志 / 临时文件
+# ===========================
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+tmp/
+temp/
